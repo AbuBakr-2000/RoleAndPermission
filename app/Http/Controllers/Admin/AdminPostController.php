@@ -11,8 +11,8 @@ class AdminPostController extends Controller
 
     public function index()
     {
-        $posts = Post::latest()->paginate(3);
-//        $posts = auth()->user()->posts;
+        $posts = Post::latest()->paginate(5);
+//        $posts = auth()->user()->posts()->paginate(5);
         return view('admin.posts.index-post',['posts'=>$posts]);
     }
     public function create()
