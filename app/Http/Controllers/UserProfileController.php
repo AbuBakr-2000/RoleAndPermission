@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class UserController extends Controller
+class UserProfileController extends Controller
 {
     public function show(User $user)
     {
