@@ -15,9 +15,16 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name',
+        'username',
         'email',
+        'avatar',
         'password',
     ];
+
+//    public function setPasswordAttribute($value)
+//    {
+//        $this->attributes['$password'] = bcrypt($value);
+//    }
 
     public function posts(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
