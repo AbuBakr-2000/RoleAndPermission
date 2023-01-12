@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminPostController;
+use App\Http\Controllers\Admin\AdminUsersController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -20,8 +21,8 @@ Route::middleware('auth')->prefix('admin')->group(function (){
     Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
 
     Route::resource('/postsAdmin', AdminPostController::class);
-    Route::resource('/user', UserProfileController::class);
-
+    Route::resource('/user', UserProfileController::class)->middleware('can:view,user');
+    Route::resource('/users', AdminUsersController::class)->middleware('role:admin');
 });
 
 
