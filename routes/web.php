@@ -16,13 +16,21 @@ Route::resources([
     'posts' => PostController::class,
 ]);
 
-Route::middleware('auth')->prefix('admin')->group(function (){
+Route::middleware('auth')->prefix('admin')->group(function () {
 
     Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
 
     Route::resource('/postsAdmin', AdminPostController::class);
+
+    Route::middleware('role:admin')->group(function () {
+
+        Route::put('/user/{user}/attach', [App\Http\Controllers\UserProfileController::class, 'attachRole'])->name('attach-role-user');
+        Route::put('/user/{user}/detach', [App\Http\Controllers\UserProfileController::class, 'detachRole'])->name('detach-role-user');
+        Route::resource('/users', AdminUsersController::class);
+    });
+
     Route::resource('/user', UserProfileController::class)->middleware('can:view,user');
-    Route::resource('/users', AdminUsersController::class)->middleware('role:admin');
+
 });
 
 

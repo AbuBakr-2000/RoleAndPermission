@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -10,7 +11,8 @@ class UserProfileController extends Controller
 {
     public function show(User $user)
     {
-        return view('admin.users.show-profile',['user'=>$user]);
+        $roles = Role::all();
+        return view('admin.users.show-profile',['user'=>$user,'roles'=>$roles]);
     }
 
     public function update(User $user)
@@ -32,6 +34,19 @@ class UserProfileController extends Controller
         $user->update($data);
 
         Session::flash('profile-updated','Profile has been updated successfully');
+        return back();
+    }
+
+    public function attachRole(User $user)
+    {
+        $user->roles()->attach(\request('user_role'));
+
+        return back();
+    }
+    public function detachRole(User $user)
+    {
+        $user->roles()->detach(\request('user_role'));
+
         return back();
     }
 }
