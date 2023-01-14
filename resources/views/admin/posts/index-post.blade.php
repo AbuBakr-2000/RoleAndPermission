@@ -44,7 +44,7 @@
                                 <td>
                                     <img width="100px" src="{{asset('storage/' .$post->post_image)}}">
                                 </td>
-                                <td>{{ $post->body }}</td>
+                                <td>{{ Str::limit($post->body,'50','...') }}</td>
                                 <td>{{ $post->created_at->diffForHumans() }}</td>
                                 <td>{{ $post->updated_at->diffForHumans() }}</td>
                                 <td>

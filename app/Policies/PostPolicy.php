@@ -17,22 +17,22 @@ class PostPolicy
 
     public function view(User $user, Post $postsAdmin)
     {
-//        return $user->id === $postsAdmin->user_id;
+        return $user->id === $postsAdmin->user_id;
     }
 
     public function create(User $user)
     {
-        return $user->is($user);
+        return $user->is($user) || $user->userHasRole('admin');
     }
 
     public function update(User $user, Post $postsAdmin)
     {
-        return $user->id === $postsAdmin->user_id;
+        return $user->id === $postsAdmin->user_id || $user->userHasRole('admin');
     }
 
     public function delete(User $user, Post $postsAdmin)
     {
-        return $user->id === $postsAdmin->user_id;
+        return $user->id === $postsAdmin->user_id || $user->userHasRole('admin');
     }
 
     public function restore(User $user, Post $postsAdmin)

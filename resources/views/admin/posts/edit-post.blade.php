@@ -1,7 +1,7 @@
 <x-admin-master>
     @section('content')
 
-        <h1>Edit a Post</h1>
+        <h1>Post by: {{ $postsAdmin->user->name }}</h1>
 
         <form action="{{ route('postsAdmin.update', $postsAdmin->id) }}" method="post" enctype="multipart/form-data">
             @csrf
