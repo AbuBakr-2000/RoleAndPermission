@@ -39,7 +39,7 @@
                         @foreach($posts as $post)
                             <tr>
                                 <td>{{ $post->id }}</td>
-                                <td>{{ $post->user->name }}</td>
+                                <td><a href="{{ route('user.show',$post->user->id) }}">{{ $post->user->name }}</a></td>
                                 <td><a href="{{ route('postsAdmin.edit',$post->id) }}">{{ $post->title }}</a></td>
                                 <td>
                                     <img width="100px" src="{{asset('storage/' .$post->post_image)}}">

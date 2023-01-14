@@ -51,6 +51,7 @@
                                     @foreach($permissions as $permission)
                                         <tr>
                                             <td>
+
                                                 <input
                                                     type="checkbox"
                                                     @foreach($role->permissions as $role_permission)
